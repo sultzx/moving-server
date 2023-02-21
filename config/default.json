@@ -1,0 +1,10 @@
+{
+    "port": {
+        "1": 5000,
+        "2": 4444
+    },
+    "mongodb": {
+        "url": "mongodb+srv://sultzx:dvsVMgsOIHyBwVxb@cluster0.ja1ehfb.mongodb.net/MOVING_DB?retryWrites=true&w=majority"
+    },
+    "jwt_key": "Q1w2e3r4t5y6"
+}
