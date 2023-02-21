@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 import config from 'config'
 import cors from 'cors'
 
-// import authRouter from './routes/auth.routes.js'
+import userRouter from './routes/auth.routes.js'
 // import uploadRouter from './routes/upload.routes.js'
 import newsRouter from './routes/news.routes.js'
 
@@ -25,7 +25,7 @@ const start = async () => {
         console.log(`database ERROR\tcodename: ${error.codeName}`)
     }
 
-    // app.use('/api/auth', authRouter)
+    app.use('/api/auth', userRouter)
     app.use('/api/news', newsRouter)
     // app.use('/api/upload', uploadRouter)
 
