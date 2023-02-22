@@ -139,3 +139,31 @@ export const update = async (req, res) => {
     });
   }
 }
+
+export const me = async (req, res) => {
+
+  try {
+    
+    const userId = req.userId
+
+    const user = await User.findById(userId)
+
+    if (!user) {
+      return res.status(404).json({
+        message: 'Қолданушы желіде жоқ',
+      });
+    }
+
+    const { passwordHash, ...userData } = user._doc;
+
+    res.json(userData);
+
+  } catch (error) {
+    
+    res.status(500).json({
+      message: error.message
+    });
+
+  }
+
+}

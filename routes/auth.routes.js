@@ -6,6 +6,8 @@ import checkAuth from '../middlewares/checkAuth.js'
 
 const userRouter = express.Router()
 
+userRouter.get('/me', checkAuth, controllers.me)
+
 userRouter.post('/registration', controllers.registration)
 
 userRouter.post('/login', controllers.login)

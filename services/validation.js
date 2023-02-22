@@ -1,8 +1,8 @@
 import { body } from 'express-validator'
 
 export const registration = [
-    body('username').optional().isLength({ min: 3, max: 16 }).isString(),
-    body('email').optional().isEmail(),
+    body('username').isLength({ min: 3, max: 16 }).isString(),
+    body('email').isEmail(),
     body('password', 'Құпия сөзіңіз').isLength({ min: 6, max: 16 }).isString()
 ]
 
