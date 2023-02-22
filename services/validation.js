@@ -17,3 +17,12 @@ export const updatingProfile = [
     body('phone').isLength({min: 11}).isString(),
     body('address').isLength({min: 3}).isString()
 ]
+
+export const order = [
+    body('title').optional().isLength({ min: 3, max: 16 }).isString(),
+    body('description').optional().isLength({ min: 3 }).isString(),
+    body('category').optional().isString(),
+    body('datetime').optional().isString(),
+    body('carBody').optional().isString(),
+    body('img').optional().isURL(),
+]

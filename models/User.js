@@ -19,7 +19,10 @@ const schema = new mongoose.Schema({
     phone: String,
     address: String,
     avatar: String,
-    role: String,
+    role: {
+        type: String,
+        default: 'user'
+    },
     company: String,
 }, {
     timestamps: true

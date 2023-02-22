@@ -52,7 +52,7 @@ export const login = async (req, res) => {
   try {
 
     let user = ''
-
+    
     if (username != undefined) {
       user = await User.findOne({
         username,
@@ -111,3 +111,31 @@ export const login = async (req, res) => {
     });
   }
 };
+
+export const update = async (req, res) => {
+  
+  try {
+
+    const {name, phone, address} = req.body
+
+    const userId = req.userId
+
+    await User.updateOne({
+      _id: userId
+    }, {
+      name,
+      phone,
+      address
+    })
+
+    res.status(200).json({
+      success: true
+    })
+
+  } catch (error) {
+    
+    res.status(500).json({
+      message: error.message
+    });
+  }
+}

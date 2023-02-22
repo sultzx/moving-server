@@ -6,6 +6,7 @@ import cors from 'cors'
 import userRouter from './routes/auth.routes.js'
 // import uploadRouter from './routes/upload.routes.js'
 import newsRouter from './routes/news.routes.js'
+import orderRouter from './routes/order.routes.js'
 
 const app = express()
 
@@ -28,6 +29,7 @@ const start = async () => {
     app.use('/api/auth', userRouter)
     app.use('/api/news', newsRouter)
     // app.use('/api/upload', uploadRouter)
+    app.use('/api/order', orderRouter)
 
     app.listen(PORT, (error) => {
         if(error) {
