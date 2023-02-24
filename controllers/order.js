@@ -1,16 +1,21 @@
 import Order from "../models/Order.js";
 import User from "../models/User.js";
+import Carbody from "../models/Carbody.js";
 
 export const create = async (req, res) => {
   try {
     const { title, description, category, datetime, carBody, img } = req.body;
+
+    const car_body = await Carbody.findOne({
+      title: carBody
+    })
 
     const document = new Order({
       title,
       description,
       category,
       datetime,
-      carBody,
+      carBody: car_body._id,
       img,
       owner: req.userId,
     });
@@ -27,6 +32,7 @@ export const getAll = async (req, res) => {
   try {
     const orders = await Order.find()
       .sort({ createdAt: -1 })
+      .populate("carBody")
       .populate("owner")
       .populate("employee")
       .exec();
@@ -42,6 +48,7 @@ export const getOne = async (req, res) => {
     const orderId = req.params.id;
 
     const order = await Order.findById(orderId)
+      .populate("carBody")
       .populate("owner")
       .populate("employee")
       .exec();

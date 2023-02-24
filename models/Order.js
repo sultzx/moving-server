@@ -18,8 +18,8 @@ const schema = new mongoose.Schema({
         required: true
     },
     carBody: {
-        type: String,
-        required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Carbody'
     },
     status: {
         type: String,

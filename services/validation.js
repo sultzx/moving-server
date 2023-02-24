@@ -24,5 +24,5 @@ export const order = [
     body('category').optional().isString(),
     body('datetime').optional().isString(),
     body('carBody').optional().isString(),
-    body('img').optional().isURL(),
+    body('img').optional().isString(),
 ]

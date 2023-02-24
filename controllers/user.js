@@ -128,7 +128,7 @@ export const login = async (req, res) => {
 
 export const update = async (req, res) => {
   try {
-    const { name, phone, addressOrCompany, avatar } = req.body;
+    const { name, phone, addressOrCompany } = req.body;
 
     const userId = req.userId
 
@@ -144,7 +144,6 @@ export const update = async (req, res) => {
             name,
             phone,
             company: addressOrCompany,
-            avatar: avatar
           }
         );
         break;
@@ -156,8 +155,7 @@ export const update = async (req, res) => {
           {
             name,
             phone,
-            address: addressOrCompany,
-            avatar: avatar
+            address: addressOrCompany
           }
         );
         break;
