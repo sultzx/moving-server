@@ -83,7 +83,7 @@ export const login = async (req, res) => {
         });
       }
     } else {
-      user = await User.findOne({  username: login  });
+      user = await User.findOne({ username: login });
 
       if (!user) {
         return res.status(404).json({
@@ -128,23 +128,43 @@ export const login = async (req, res) => {
 
 export const update = async (req, res) => {
   try {
-    const { name, phone, address } = req.body;
+    const { name, phone, addressOrCompany, avatar } = req.body;
 
-    const userId = req.userId;
+    const userId = req.userId
 
-    await User.updateOne(
-      {
-        _id: userId,
-      },
-      {
-        name,
-        phone,
-        address,
-      }
-    );
+    const user = await User.findById(userId)
+
+    switch (user && user.role) {
+      case "employee":
+        await User.updateOne(
+          {
+            _id: userId,
+          },
+          {
+            name,
+            phone,
+            company: addressOrCompany,
+            avatar: avatar
+          }
+        );
+        break;
+      case "user":
+        await User.updateOne(
+          {
+            _id: userId,
+          },
+          {
+            name,
+            phone,
+            address: addressOrCompany,
+            avatar: avatar
+          }
+        );
+        break;
+    }
 
     res.status(200).json({
-      success: true,
+      success: true
     });
   } catch (error) {
     res.status(500).json({
