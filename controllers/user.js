@@ -7,8 +7,6 @@ export const registration = async (req, res) => {
   try {
     const { username, email, company, password } = req.body;
 
-    console.log(username, email, company, password);
-
     const isEmailExist = await User.findOne({
       email: email,
     });
@@ -63,8 +61,6 @@ export const registration = async (req, res) => {
 
 export const login = async (req, res) => {
   const { login, password } = req.body;
-
-  console.log(login, password);
 
   try {
     let user = "";

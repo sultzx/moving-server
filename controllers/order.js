@@ -91,20 +91,23 @@ export const remove = async (req, res) => {
 
 export const update = async (req, res) => {
   try {
-    const orderId = req.params.id;
 
-    const { title, description, category, datetime, carBody, img } = req.body;
+    const { id, title, description, category, datetime, carBody, img } = req.body;
+
+    const selectedCarBody = await Carbody.findOne({
+      title: carBody
+    })
 
     await Order.updateOne(
       {
-        _id: orderId,
+        _id: id,
       },
       {
         title,
         description,
         category,
         datetime,
-        carBody,
+        carBody: selectedCarBody,
         img,
         owner: req.userId,
       }
@@ -118,9 +121,7 @@ export const update = async (req, res) => {
 
 export const setStatus = async (req, res) => {
   try {
-    const { status } = req.body;
-
-    const orderId = req.params.id;
+    const { id, status } = req.body;
 
     const userId = req.userId;
 
@@ -134,7 +135,7 @@ export const setStatus = async (req, res) => {
 
     await Order.updateOne(
       {
-        _id: orderId,
+        _id: id,
       },
       {
         status,
@@ -145,7 +146,6 @@ export const setStatus = async (req, res) => {
     res.status(200).json({ 
         success: true,
         status: status,
-        orderId,
         userId,
         employee
     });

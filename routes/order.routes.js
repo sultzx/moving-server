@@ -10,8 +10,8 @@ const orderRouter = express.Router()
 orderRouter.post('/', checkAuth, validations.order, validationHandler, controllers.create)
 orderRouter.get('/all', controllers.getAll)
 orderRouter.get('/:id', checkAuth, controllers.getOne)
-orderRouter.patch('/:id', checkAuth, validations.order, validationHandler, controllers.update)
+orderRouter.patch('/', checkAuth, validations.order, validationHandler, controllers.update)
 orderRouter.delete('/:id', checkAuth, controllers.remove)
-orderRouter.patch('/set-status/:id', checkAuth, controllers.setStatus)
+orderRouter.patch('/set-status/', checkAuth, controllers.setStatus)
 
 export default orderRouter

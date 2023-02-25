@@ -15,7 +15,7 @@ const uploadOrderImg = multer({
     storage: storageService('orders')
 })
 
-uploadRouter.post('/order', checkAuth, uploadAvatar.single('image'), controllers.uploadAvatar)
+uploadRouter.post('/avatar', checkAuth, uploadAvatar.single('image'), controllers.uploadAvatar)
 uploadRouter.post('/order', checkAuth, uploadOrderImg.single('image'), controllers.uploadOrderImg)
 
 export default uploadRouter

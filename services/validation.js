@@ -19,7 +19,7 @@ export const updatingProfile = [
 ]
 
 export const order = [
-    body('title').optional().isLength({ min: 3, max: 16 }).isString(),
+    body('title').optional().isLength({ min: 3 }).isString(),
     body('description').optional().isLength({ min: 3 }).isString(),
     body('category').optional().isString(),
     body('datetime').optional().isString(),

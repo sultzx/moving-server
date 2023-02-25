@@ -15,7 +15,6 @@ export const uploadAvatar = async (req, res) => {
 export const uploadOrderImg = async (req, res) => {
     const url = `/uploads/orders/${req.file.originalname}`
     res.json({
-        types:[LOAD_ARTICLES, LOAD_ARTICLES_SUCCESS, LOAD_ARTICLES_ERROR],
         url: url
     })
 }
