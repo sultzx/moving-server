@@ -17,14 +17,18 @@ const schema = new mongoose.Schema({
         type: String,
         required: true
     },
-    carBody: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Carbody'
-    },
     status: {
         type: String,
         required: true,
         default: 'Тапсырыс бос'
+    },
+    clientPrice: {
+        type: Number,
+        default: 350
+    },
+    driverPrice: {
+        type: Number,
+        default: 0
     },
     img: {
         type: String,
@@ -34,9 +38,9 @@ const schema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    employee: {
+    car: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'Car'
     }
 }, {
     timestamps: true

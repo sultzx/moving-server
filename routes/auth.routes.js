@@ -14,4 +14,10 @@ userRouter.post('/login', controllers.login)
 
 userRouter.patch('/update', checkAuth, controllers.update)
 
+userRouter.patch('/update-car', checkAuth, controllers.updateCar)
+
+userRouter.get('/all-car', checkAuth, controllers.allCar)
+
+userRouter.get('/one-car', checkAuth, controllers.oneCar)
+
 export default userRouter

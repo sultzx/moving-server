@@ -13,5 +13,9 @@ orderRouter.get('/:id', checkAuth, controllers.getOne)
 orderRouter.patch('/', checkAuth, validations.order, validationHandler, controllers.update)
 orderRouter.delete('/:id', checkAuth, controllers.remove)
 orderRouter.patch('/set-status/', checkAuth, controllers.setStatus)
+orderRouter.patch('/select-other-driver', checkAuth, controllers.selectOtherDriver)
+orderRouter.patch('/set-driver-price', checkAuth, controllers.setDriverPrice)
+orderRouter.post('/comment', checkAuth, controllers.comment)
+orderRouter.get('/comments', controllers.getAllComments)
 
 export default orderRouter

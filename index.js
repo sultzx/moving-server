@@ -7,6 +7,7 @@ import userRouter from './routes/auth.routes.js'
 import uploadRouter from './routes/upload.routes.js'
 import newsRouter from './routes/news.routes.js'
 import orderRouter from './routes/order.routes.js'
+import commentRouter from './routes/comment.routes.js'
 
 const app = express()
 
@@ -31,6 +32,7 @@ const start = async () => {
     app.use('/api/news', newsRouter)
     app.use('/api/upload', uploadRouter)
     app.use('/api/order', orderRouter)
+    app.use('/api/comment', commentRouter)
 
     app.listen(PORT, (error) => {
         if(error) {

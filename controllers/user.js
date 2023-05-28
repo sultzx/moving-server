@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import config from "config";
 import User from "../models/User.js";
+import Car from "../models/Car.js";
 
 export const registration = async (req, res) => {
   try {
@@ -30,6 +31,7 @@ export const registration = async (req, res) => {
         hashedPassword: hash,
         role: "employee",
       });
+
     } else {
       document = new User({
         username,
@@ -39,6 +41,15 @@ export const registration = async (req, res) => {
     }
 
     const user = await document.save();
+
+    if (user.role == 'employee') {
+
+    const  car = new Car({
+        driver: user._id
+      })
+
+      await car.save()
+    }
 
     const { hashedPassword, ...userData } = user._doc;
 
@@ -166,6 +177,61 @@ export const update = async (req, res) => {
     });
   }
 };
+
+export const updateCar = async (req, res) => {
+  try {
+    const { brand, model, number, color, body } = req.body;
+
+    const userId = req.userId
+
+    await Car.updateOne({
+      driver: userId
+    }, {
+      brand, model, number, color, body
+    })
+
+    res.status(200).json({
+      success: true
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+export const allCar = async (req, res) => {
+  try {
+
+    const cars = await Car.find().populate('driver').exec()
+
+    res.status(200).json(cars);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+}
+
+export const oneCar = async (req, res) => {
+  try {
+
+    const userId = req.userId
+
+    const car = await Car.find({
+      driver: userId
+    }).populate('driver').exec()
+
+    console.log(car)
+
+    res.status(200).json(car);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+}
+
 
 export const me = async (req, res) => {
   try {
